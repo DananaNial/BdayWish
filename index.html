@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Mobile-first animations */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 15px;
+            max-width: 100%;
+        }
+
+        /* Mobile header */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            animation: slideDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 2px 2px 8px rgba(255,255,255,0.3);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 2px 2px 15px rgba(255,255,255,0.6), 0 0 25px rgba(255,255,255,0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        /* Card-based sections for mobile */
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,182,193,0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #d63384;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Mobile photo gallery */
+        .photo-section {
+            margin: 20px 0;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .photo-placeholder {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            border: 2px dashed rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fd79a8);
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Birthday wish card */
+        .birthday-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            animation: heartbeat 2s infinite;
+            box-shadow: 0 15px 35px rgba(238, 90, 36, 0.3);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .birthday-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* Interactive buttons */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0px);
+        }
+
+        /* Message display */
+        .message-display {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Love meter */
+        .love-meter {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .love-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .love-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+            width: 0%;
+            border-radius: 10px;
+            animation: fillLove 3s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes fillLove {
+            to { width: 100%; }
+        }
+
+        .love-fill::after {
+            content: '💖';
+            position: absolute;
+            right: -10px;
+            top: -2px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 380px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .card {
+                padding: 20px 15px;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* Touch feedback */
+        .btn:active,
+        .photo-placeholder:active {
+            transform: scale(0.95);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Happy Birthday Beautiful! 🎉</h1>
+            <p class="subtitle">To my heart, my soul, my everything</p>
+            <p>(Scroll to see more~)</p>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-content">
+                <h2>My Sweet Angel 💕</h2>
+                <p>Happiest birthday to my loving girlfriend FANANA!!!!! Today marks another beautiful year of your amazing existence, and I couldn't be more grateful to celebrate it with you. You are the light that brightens every corner of my world.</p>
+                <p>Your smile is my favorite sight, your laughter is my favorite sound, and your love is my favorite feeling. Every day with you feels like a gift I never want to unwrap completely.</p>
+                <p>Semoga sentiasa ceria, murah rezeki, dipermudahkan segala urusan, dan sihat selalu. (Semoga kita kekal bahagia bersama hehe)</p>
+            </div>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-content">
+                <h2>What You Mean To Me 🌟</h2>
+                <p>You're not just my girlfriend – you're my best friend, my confidante, my inspiration, and my safe haven all wrapped into one incredible person.</p>
+                <p>When I look at you, I see my future filled with endless laughter, countless adventures, and a love that grows stronger with each passing day.</p>
+                <p>Thank you for being patient with my silly jokes, for supporting my dreams, and for loving me exactly as I am. You make me want to be the best version of myself.</p>
+            </div>
+        </div>
+
+        <div class="birthday-card fade-in">
+            <h3>Birthday Wishes From My Heart 🎂</h3>
+            <p>May this new year bring you all the joy, success, and happiness you deserve. May every dream you've whispered to the stars come true, and may our love story continue to be the most beautiful chapter of our lives. AND MAY WE MEET SO I CAN HUG YOUUUU!!!</p>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-content">
+                <h2>Beautiful You 📸</h2>
+                <div class="photo-grid">
+                    <img class="photo-placeholder" src="your-photo1.jpg" alt="Beautiful moment 1">
+                    <img class="photo-placeholder" src="your-photo2.jpg" alt="Beautiful moment 2">
+                    <img class="photo-placeholder" src="your-photo3.jpg" alt="Beautiful moment 3">
+                    <img class="photo-placeholder" src="your-photo4.jpg" alt="Beautiful moment 4">
+                </div>
+                <p style="text-align: center; font-style: italic; color: #666; font-size: 0.9rem;">
+                    Your beautiful moments captured forever - each photo shows how amazing you are ✨
+                </p>
+            </div>
+        </div>
+
+        <div class="love-meter fade-in">
+            <h3 style="font-family: 'Dancing Script', cursive; color: #d63384; margin-bottom: 15px;">Love Level Meter 💖</h3>
+            <div class="love-bar">
+                <div class="love-fill"></div>
+            </div>
+            <p style="color: #555; font-size: 0.9rem;">My love for you: INFINITE & BEYOND! 🚀</p>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-content">
+                <h2>Birthday Magic ✨</h2>
+                <div class="button-container">
+                    <button class="btn" onclick="blowCandles()">🕯️ Blow Out The Candles (Click multiple times!)</button>
+                    <button class="btn" onclick="openGift()">🎁 Open Your Gift (Click multiple times!)</button>
+                    <button class="btn" onclick="makeWish()">⭐ Make A Wish (Click multiple times!)</button>
+                </div>
+                <div class="message-display" id="magicMessage"></div>
+            </div>
+        </div>
+
+        <div class="card fade-in">
+            <div class="card-content">
+                <h2>Forever and Always 💍</h2>
+                <p>As you blow out your candles tonight, know that my wish is simple: to spend countless more birthdays celebrating the incredible person you are.</p>
+                <p>I love you more than words can express, more than actions can show, and more than time can measure.</p>
+                <p style="text-align: center; font-weight: 500; color: #d63384; font-size: 1.1rem; margin-top: 20px;">Happy Birthday, My Love! 🎉💖</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particles = ['💖', '🌟', '✨', '💫', '🎂', '🎉', '🌸', '💕'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 4 + 6 + 's';
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 10000);
+            }, 1500);
+        }
+
+        // Interactive functions
+        function blowCandles() {
+            const messages = [
+                "🕯️ *Puff* Your wish is floating up to the stars! ⭐",
+                "🎂 Make a wish, beautiful! I hope it comes true! ✨",
+                "🌟 All candles blown! May this year be magical! 🎭",
+                "💫 Your birthday candles heard your wish! 🙏"
+            ];
+            showMessage(messages);
+            createSparkles();
+        }
+
+        function openGift() {
+            const messages = [
+                "🎁 Surprise! My gift to you is my love, today and always! 💝",
+                "🎀 The best gift I can give you is my heart! ❤️",
+                "🎊 Your gift: unlimited hugs, kisses, and love! 🤗",
+                "💎 You already have the greatest gift - being YOU! ✨"
+            ];
+            showMessage(messages);
+            createHearts();
+        }
+
+        function makeWish() {
+            const messages = [
+                "⭐ I wish for your happiness every single day! 🌈",
+                "🌟 My wish: that we grow old together, hand in hand! 👫",
+                "💫 Wishing you love, laughter, and endless adventures! 🎪",
+                "✨ I wish you realize how amazing and loved you are! 💕"
+            ];
+            showMessage(messages);
+            animateWish();
+        }
+
+        function showPhotoMessage() {
+            const messages = [
+                "📸 This space is perfect for your beautiful smile! 💕",
+                "🖼️ Add your gorgeous photo here - you light up every picture! ✨",
+                "📷 Your radiant beauty belongs right here! 😊",
+                "🌅 Show off that amazing smile of yours here! 🌟"
+            ];
+            showMessage(messages);
+        }
+
+        function showMessage(messages) {
+            const messageDisplay = document.getElementById('magicMessage');
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            messageDisplay.innerHTML = randomMessage;
+            messageDisplay.style.display = 'block';
+            messageDisplay.style.animation = 'bounceIn 0.6s ease-out';
+            
+            setTimeout(() => {
+                messageDisplay.style.animation = 'fadeOut 0.5s ease-in';
+            }, 4000);
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = ['✨', '⭐', '🌟', '💫'][Math.floor(Math.random() * 4)];
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                    sparkle.style.fontSize = '20px';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '1000';
+                    sparkle.style.animation = 'bounceIn 1s ease-out forwards';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 2000);
+                }, i * 100);
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = ['💖', '💕', '💝', '💗'][Math.floor(Math.random() * 4)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    heart.style.fontSize = '25px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.animation = 'floatUp 3s ease-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        function animateWish() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+            document.body.style.transition = 'background 1s ease';
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = `linear-gradient(180deg, ${randomColor}, #fecfef, #fad0c4)`;
+            
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%)';
+            }, 2000);
+        }
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize everything
+        window.addEventListener('load', () => {
+            createParticles();
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Add touch feedback for mobile
+        document.addEventListener('touchstart', () => {}, {passive: true});
+    </script>
+</body>
+</html>
